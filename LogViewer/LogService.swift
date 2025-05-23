@@ -20,6 +20,7 @@ public class LogService: ServiceProtocol {
     private var isPaused: Bool = false
     private var searchText: String = ""
     private var selectedCategories: Set<String> = []
+    private var allAvailableCategories: Set<String> = []
     private var selectedLogLevels: Set<OSLogEntryLog.Level> = [.debug, .info, .notice, .error, .fault]
     private var categoryLogLevels: [String: Set<OSLogEntryLog.Level>] = [:]
     
@@ -27,6 +28,7 @@ public class LogService: ServiceProtocol {
     private var pollTimer: Timer?
     private var lastPollDate: Date?
     private let updateInterval: TimeInterval = 0.5
+    private let logger = Logger(subsystem: "com.logviewer.service", category: "LogService")
     
     // ServiceProtocol requirements
     var continuations: [ServiceContinuation.Continuation] = []
@@ -40,39 +42,52 @@ public class LogService: ServiceProtocol {
     }
     
     init() {
+        logger.info("LogService initializing...")
         setupLogStore()
         loadCategories()
         startObservingLogs()
+        logger.info("LogService initialized with \(self.selectedCategories.count) categories")
     }
     
     private func setupLogStore() {
         do {
+            // Try currentProcessIdentifier first, which should definitely capture our own logs
             logStore = try OSLogStore(scope: .currentProcessIdentifier)
+            logger.info("OSLogStore created successfully with currentProcessIdentifier scope")
         } catch {
-            print("Failed to create log store: \(error)")
+            logger.error("Failed to create log store: \(error.localizedDescription)")
         }
     }
     
     private func loadCategories() {
-        guard let url = Bundle.main.url(forResource: "LoggerSettings", withExtension: "plist"),
+        guard let url = Bundle.main.url(forResource: "LogViewerLoggerSettings", withExtension: "plist"),
               let data = try? Data(contentsOf: url),
               let plist = try? PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String: Any],
               let categoriesDict = plist["categories"] as? [String: Bool] else {
+            logger.warning("Failed to load LogViewerLoggerSettings.plist or parse categories")
             return
         }
         
+        allAvailableCategories = Set(categoriesDict.keys)
         selectedCategories = Set(categoriesDict.keys.filter { categoriesDict[$0] == true })
-        // Initialize category log levels with all levels selected
-        for category in selectedCategories {
+        
+        // Initialize category log levels with all levels selected for ALL categories
+        for category in allAvailableCategories {
             categoryLogLevels[category] = [.debug, .info, .notice, .error, .fault]
         }
+        
+        let categoryList = allAvailableCategories.sorted().joined(separator: ", ")
+        logger.info("Loaded categories from plist: [\(categoryList)]")
+        logger.info("Initially selected categories: [\(self.selectedCategories.sorted().joined(separator: ", "))]")
     }
     
     private func startObservingLogs() {
-        lastPollDate = Date()
+        // Start from 30 seconds ago to capture any logs from app startup
+        lastPollDate = Date().addingTimeInterval(-30.0)
         pollTimer = Timer.scheduledTimer(withTimeInterval: updateInterval, repeats: true) { [weak self] _ in
             self?.pollLogs()
         }
+        logger.info("Started observing logs with \(self.updateInterval)s interval")
     }
     
     private func pollLogs() {
@@ -104,17 +119,20 @@ public class LogService: ServiceProtocol {
                 return shouldShowEntry(entry) ? entry : nil
             }
             
-            DispatchQueue.main.async {
-                self.logEntries.append(contentsOf: newEntries)
-                self.updateSubscribers()
+            if !newEntries.isEmpty {
+                DispatchQueue.main.async {
+                    self.logEntries.append(contentsOf: newEntries)
+                    self.logger.debug("Added \(newEntries.count) new log entries (total: \(self.logEntries.count))")
+                    self.updateSubscribers()
+                }
             }
         } catch {
-            print("Failed to poll logs: \(error)")
+            logger.error("Failed to poll logs: \(error.localizedDescription)")
         }
     }
     
     private func shouldShowEntry(_ entry: LogEntry) -> Bool {
-        // Check category filter
+        // Check category filter - apply to ALL logs
         if !selectedCategories.isEmpty && !selectedCategories.contains(entry.category) {
             return false
         }
@@ -133,9 +151,12 @@ public class LogService: ServiceProtocol {
         // Check search text
         if !searchText.isEmpty {
             let searchLower = searchText.lowercased()
-            return entry.message.lowercased().contains(searchLower) ||
-                   entry.category.lowercased().contains(searchLower) ||
-                   entry.subsystem.lowercased().contains(searchLower)
+            let matches = entry.message.lowercased().contains(searchLower) ||
+                         entry.category.lowercased().contains(searchLower) ||
+                         entry.subsystem.lowercased().contains(searchLower)
+            if !matches {
+                return false
+            }
         }
         
         return true
@@ -158,11 +179,14 @@ public class LogService: ServiceProtocol {
     
     func togglePause() {
         isPaused.toggle()
+        logger.notice("Log monitoring \(self.isPaused ? "paused" : "resumed")")
         updateSubscribers()
     }
     
     func clearLogs() {
+        let previousCount = logEntries.count
         logEntries.removeAll()
+        logger.notice("Cleared \(previousCount) log entries")
         updateSubscribers()
     }
     
@@ -201,9 +225,18 @@ public class LogService: ServiceProtocol {
         return selectedLogLevels
     }
     
+    func getAllAvailableCategories() -> Set<String> {
+        return allAvailableCategories
+    }
+    
     // ServiceProtocol requirement
     func load() {
         updateSubscribers()
+    }
+    
+    func testLogStatement() {
+        logger.notice("TEST: This is a test log statement from LogService")
+        print("TEST: Created test log statement")
     }
     
     deinit {

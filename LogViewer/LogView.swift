@@ -3,7 +3,8 @@ import OSLog
 
 struct LogView: View {
     @ObservedObject private var viewModel: LogViewModel
-    @State private var showFilters = false
+    @Binding private var showSidebar: Bool
+    private let logger = Logger(subsystem: "com.logviewer.app", category: "UI")
     
     private let levelStrings: [OSLogEntryLog.Level: String] = [
         .debug: "DEBUG",
@@ -13,8 +14,9 @@ struct LogView: View {
         .fault: "FAULT"
     ]
     
-    init(viewModel: LogViewModel) {
+    init(viewModel: LogViewModel, showSidebar: Binding<Bool>) {
         self.viewModel = viewModel
+        self._showSidebar = showSidebar
     }
     
     var body: some View {
@@ -28,94 +30,53 @@ struct LogView: View {
     
     private var toolbar: some View {
         HStack {
-            Button(action: viewModel.togglePause) {
+            Button(action: {
+                logger.info("User clicked pause/resume button")
+                viewModel.togglePause()
+            }) {
                 Image(systemName: viewModel.isPaused ? "play.fill" : "pause.fill")
             }
             .help(viewModel.isPaused ? "Resume logging" : "Pause logging")
             
-            Button(action: viewModel.clearLogs) {
+            Button(action: {
+                logger.notice("User clicked clear logs button")
+                viewModel.clearLogs()
+            }) {
                 Image(systemName: "trash")
             }
             .help("Clear logs")
             
-            Button(action: { showFilters.toggle() }) {
-                Image(systemName: "line.3.horizontal.decrease.circle")
+            Button(action: {
+                logger.info("User clicked sidebar toggle button")
+                showSidebar.toggle()
+            }) {
+                Image(systemName: "sidebar.left")
             }
-            .help("Show filters")
+            .help(showSidebar ? "Hide sidebar" : "Show sidebar")
             
-            SearchBar(text: $viewModel.searchText)
+            Button(action: {
+                logger.info("User clicked test log button")
+                viewModel.createTestLog()
+            }) {
+                Image(systemName: "testtube.2")
+            }
+            .help("Create test log")
+            
+            SearchBar(text: $viewModel.searchText, logger: logger)
         }
         .padding()
     }
     
     private var logList: some View {
-        HSplitView {
-            if showFilters {
-                filterPanel
-                    .frame(width: 250)
-            }
-            
-            List(viewModel.logEntries) { entry in
-                LogEntryRow(entry: entry)
-            }
+        List(viewModel.logEntries) { entry in
+            LogEntryRow(entry: entry)
         }
-    }
-    
-    private var filterPanel: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Filters")
-                .font(.headline)
-            
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Log Levels")
-                    .font(.subheadline)
-                
-                ForEach([OSLogEntryLog.Level.debug, .info, .notice, .error, .fault], id: \.self) { level in
-                    Toggle(levelStrings[level] ?? "UNKNOWN", isOn: Binding(
-                        get: { viewModel.selectedLevels.contains(level) },
-                        set: { isSelected in
-                            var levels = viewModel.selectedLevels
-                            if isSelected {
-                                levels.insert(level)
-                            } else {
-                                levels.remove(level)
-                            }
-                            viewModel.setSelectedLevels(levels)
-                        }
-                    ))
-                }
-            }
-            
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Categories")
-                    .font(.subheadline)
-                
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 4) {
-                        ForEach(Array(viewModel.selectedCategories.sorted()), id: \.self) { category in
-                            Toggle(category, isOn: Binding(
-                                get: { viewModel.selectedCategories.contains(category) },
-                                set: { isSelected in
-                                    var categories = viewModel.selectedCategories
-                                    if isSelected {
-                                        categories.insert(category)
-                                    } else {
-                                        categories.remove(category)
-                                    }
-                                    viewModel.setSelectedCategories(categories)
-                                }
-                            ))
-                        }
-                    }
-                }
-            }
-        }
-        .padding()
     }
 }
 
 struct SearchBar: View {
     @Binding var text: String
+    let logger: Logger
     
     var body: some View {
         HStack {
@@ -124,9 +85,19 @@ struct SearchBar: View {
             
             TextField("Search logs...", text: $text)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .onChange(of: text) { oldValue, newValue in
+                    if newValue.isEmpty && !oldValue.isEmpty {
+                        logger.info("User cleared search field")
+                    } else if !newValue.isEmpty {
+                        logger.debug("User updated search text: '\(newValue)'")
+                    }
+                }
             
             if !text.isEmpty {
-                Button(action: { text = "" }) {
+                Button(action: {
+                    logger.info("User clicked search clear button")
+                    text = ""
+                }) {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundColor(.gray)
                 }
@@ -166,5 +137,5 @@ struct LogEntryRow: View {
 }
 
 #Preview {
-    LogView(viewModel: LogViewModel(logService: LogService()))
+    LogView(viewModel: LogViewModel(logService: LogService()), showSidebar: .constant(true))
 } 

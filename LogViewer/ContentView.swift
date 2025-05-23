@@ -10,32 +10,20 @@ import OSLog
 
 struct ContentView: View {
     @EnvironmentObject private var viewModel: LogViewModel
+    @State private var showSidebar = true
+    private let logger = Logger(subsystem: "com.logviewer.app", category: "UI")
     
     var body: some View {
         NavigationSplitView {
-            SidebarView()
+            if showSidebar {
+                SidebarView()
+            }
         } detail: {
-            VStack(spacing: 0) {
-                toolbar
-                LogView(viewModel: viewModel)
-            }
+            LogView(viewModel: viewModel, showSidebar: $showSidebar)
         }
-    }
-    
-    private var toolbar: some View {
-        HStack {
-            Button(action: { viewModel.togglePause() }) {
-                Image(systemName: viewModel.isPaused ? "play.fill" : "pause.fill")
-            }
-            .buttonStyle(.borderless)
-            
-            Button(action: { viewModel.clearLogs() }) {
-                Image(systemName: "trash")
-            }
-            .buttonStyle(.borderless)
+        .onChange(of: showSidebar) { oldValue, newValue in
+            logger.info("Sidebar visibility changed from \(oldValue) to \(newValue)")
         }
-        .padding()
-        .background(Color(NSColor.windowBackgroundColor))
     }
 }
 
@@ -48,6 +36,7 @@ struct CategoryLogLevels: Identifiable {
 struct SidebarView: View {
     @EnvironmentObject private var viewModel: LogViewModel
     @State private var expandedCategories: Set<String> = []
+    private let logger = Logger(subsystem: "com.logviewer.app", category: "UI")
     
     var body: some View {
         List {
@@ -56,28 +45,24 @@ struct SidebarView: View {
                     Toggle(level.description, isOn: Binding(
                         get: { viewModel.selectedLevels.contains(level) },
                         set: { isSelected in
-                            var levels = viewModel.selectedLevels
-                            if isSelected {
-                                levels.insert(level)
-                            } else {
-                                levels.remove(level)
-                            }
-                            viewModel.setSelectedLevels(levels)
+                            viewModel.setGlobalLogLevel(level, isSelected: isSelected)
                         }
                     ))
                 }
             }
             
             Section("Categories") {
-                ForEach(Array(viewModel.selectedCategories.sorted()), id: \.self) { category in
+                ForEach(Array(viewModel.allAvailableCategories.sorted()), id: \.self) { category in
                     DisclosureGroup(
                         isExpanded: Binding(
                             get: { expandedCategories.contains(category) },
                             set: { isExpanded in
                                 if isExpanded {
                                     expandedCategories.insert(category)
+                                    logger.debug("User expanded category '\(category)'")
                                 } else {
                                     expandedCategories.remove(category)
+                                    logger.debug("User collapsed category '\(category)'")
                                 }
                             }
                         )
@@ -101,8 +86,10 @@ struct SidebarView: View {
                                 var categories = viewModel.selectedCategories
                                 if isSelected {
                                     categories.insert(category)
+                                    logger.info("User enabled category '\(category)'")
                                 } else {
                                     categories.remove(category)
+                                    logger.info("User disabled category '\(category)'")
                                 }
                                 viewModel.setSelectedCategories(categories)
                             }

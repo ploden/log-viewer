@@ -68,8 +68,13 @@ struct LogView: View {
     }
     
     private var logList: some View {
-        List(viewModel.logEntries) { entry in
-            LogEntryRow(entry: entry)
+        ScrollView {
+            LazyVStack(alignment: .leading, spacing: 0) {
+                ForEach(viewModel.logEntries) { entry in
+                    LogEntryRow(entry: entry)
+                        .padding(.horizontal, 12)
+                }
+            }
         }
     }
 }
@@ -109,10 +114,16 @@ struct SearchBar: View {
 struct LogEntryRow: View {
     let entry: LogEntry
     
+    private static let timeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss"
+        return formatter
+    }()
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
-                Text(entry.timestamp, style: .time)
+                Text(Self.timeFormatter.string(from: entry.timestamp))
                     .font(.caption)
                     .foregroundColor(.secondary)
                 

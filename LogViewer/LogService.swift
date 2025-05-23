@@ -108,20 +108,19 @@ public class LogService: ServiceProtocol {
                     return nil
                 }
                 
-                let entry = LogEntry(
+                return LogEntry(
                     timestamp: logEntry.date,
                     level: logEntry.level,
                     category: logEntry.category,
                     subsystem: logEntry.subsystem,
                     message: logEntry.composedMessage
                 )
-                
-                return shouldShowEntry(entry) ? entry : nil
             }
             
             if !newEntries.isEmpty {
                 DispatchQueue.main.async {
                     self.logEntries.append(contentsOf: newEntries)
+                    
                     self.logger.debug("Added \(newEntries.count) new log entries (total: \(self.logEntries.count))")
                     self.updateSubscribers()
                 }
@@ -129,37 +128,6 @@ public class LogService: ServiceProtocol {
         } catch {
             logger.error("Failed to poll logs: \(error.localizedDescription)")
         }
-    }
-    
-    private func shouldShowEntry(_ entry: LogEntry) -> Bool {
-        // Check category filter - apply to ALL logs
-        if !selectedCategories.isEmpty && !selectedCategories.contains(entry.category) {
-            return false
-        }
-        
-        // Check category-specific log levels
-        if let categoryLevels = categoryLogLevels[entry.category],
-           !categoryLevels.contains(entry.level) {
-            return false
-        }
-        
-        // Check global log level
-        if !selectedLogLevels.contains(entry.level) {
-            return false
-        }
-        
-        // Check search text
-        if !searchText.isEmpty {
-            let searchLower = searchText.lowercased()
-            let matches = entry.message.lowercased().contains(searchLower) ||
-                         entry.category.lowercased().contains(searchLower) ||
-                         entry.subsystem.lowercased().contains(searchLower)
-            if !matches {
-                return false
-            }
-        }
-        
-        return true
     }
     
     func getCategoryLogLevels(_ category: String) -> Set<OSLogEntryLog.Level> {

@@ -21,6 +21,8 @@ struct LogEntry: Identifiable {
             return .red
         case .fault:
             return .purple
+        case .undefined:
+            return .gray
         @unknown default:
             return .black
         }
@@ -38,6 +40,8 @@ struct LogEntry: Identifiable {
             return "ERROR"
         case .fault:
             return "FAULT"
+        case .undefined:
+            return "UNDEFINED"
         @unknown default:
             return "UNKNOWN"
         }

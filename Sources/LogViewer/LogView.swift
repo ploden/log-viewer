@@ -76,6 +76,7 @@ struct LogView: View {
                 }
             }
         }
+        .background(.white)
     }
 }
 

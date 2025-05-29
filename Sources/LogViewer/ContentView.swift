@@ -115,6 +115,8 @@ extension OSLogEntryLog.Level {
             return "Error"
         case .fault:
             return "Fault"
+        case .undefined:
+            return "Undefined"
         @unknown default:
             return "Unknown"
         }

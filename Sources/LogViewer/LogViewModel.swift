@@ -210,7 +210,7 @@ class LogViewModel: ObservableObject {
     }
 }
 
-extension OSLogEntryLog.Level: CaseIterable {
+extension OSLogEntryLog.Level: @retroactive CaseIterable {
     public static var allCases: [OSLogEntryLog.Level] {
         [.debug, .info, .notice, .error, .fault]
     }

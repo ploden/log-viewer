@@ -46,22 +46,6 @@ struct LogView: View {
             }
             .help("Clear logs")
             
-            Button(action: {
-                logger.info("User clicked sidebar toggle button")
-                showSidebar.toggle()
-            }) {
-                Image(systemName: "sidebar.left")
-            }
-            .help(showSidebar ? "Hide sidebar" : "Show sidebar")
-            
-            Button(action: {
-                logger.info("User clicked test log button")
-                viewModel.createTestLog()
-            }) {
-                Image(systemName: "testtube.2")
-            }
-            .help("Create test log")
-            
             SearchBar(text: $viewModel.searchText, logger: logger)
         }
         .padding()

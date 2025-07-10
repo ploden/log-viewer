@@ -8,12 +8,14 @@
 import SwiftUI
 import OSLog
 
-struct ContentView: View {
+public struct ContentView: View {
     @EnvironmentObject private var viewModel: LogViewModel
     @State private var showSidebar = true
     private let logger = Logger(subsystem: "com.logviewer.app", category: "UI")
     
-    var body: some View {
+    public init() {}
+
+    public var body: some View {
         NavigationSplitView {
             if showSidebar {
                 SidebarView()

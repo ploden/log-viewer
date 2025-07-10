@@ -8,6 +8,7 @@
 import SwiftUI
 import OSLog
 
+/*
 @main
 struct LogViewerMainApp: App {
     private let logService: LogService
@@ -28,3 +29,4 @@ struct LogViewerMainApp: App {
         .windowToolbarStyle(.unified)
     }
 }
+*/

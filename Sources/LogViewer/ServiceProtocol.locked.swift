@@ -5,7 +5,8 @@
 //  Created by Philip Loden on 4/2/25.
 //
 
-protocol ServiceProtocol {
+/*
+public protocol ServiceProtocol {
     associatedtype ServiceModel
     typealias ServiceContinuation = AsyncStream<ServiceState<ServiceModel>>
 
@@ -16,7 +17,7 @@ protocol ServiceProtocol {
     func load()
 }
 
-extension ServiceProtocol {
+public extension ServiceProtocol {
     mutating func subscribe() -> ServiceContinuation {
         let stream = AsyncStream(ServiceState<ServiceModel>.self) { continuation in
             continuations.append(continuation)
@@ -32,3 +33,4 @@ extension ServiceProtocol {
         }
     }
 }
+*/

@@ -76,6 +76,13 @@ iOSInjectionProject/
 .AppleDouble
 .LSOverride
 
+# osx noise
+.DS_Store
+profile
+=======
+.DS_Store
+*.swp
+
 # Icon must end with two \r
 Icon
 

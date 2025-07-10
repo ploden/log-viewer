@@ -8,13 +8,67 @@
 import Foundation
 import OSLog
 import Combine
+import SwiftUI
 
-struct LogServiceData {
+public enum ServiceState<T: Any> {
+    case stopped
+    case loading
+    case loaded(T)
+    case error(Error)
+}
+
+extension ServiceState: Equatable {
+    public static func == (lhs: ServiceState, rhs: ServiceState) -> Bool {
+        switch (lhs, rhs) {
+        case (.loaded(let lhsData), .loaded(let rhsData)):
+            //return lhsData == rhsData
+            return true
+        case (.loading, .loading):
+            return true
+        case (.stopped, .stopped):
+            return true
+        case (.error(let lhsError), .error(let rhsError)):
+            return lhsError.localizedDescription == rhsError.localizedDescription
+        default:
+            return false
+        }
+    }
+}
+
+public protocol ServiceProtocol {
+    associatedtype ServiceModel
+    typealias ServiceContinuation = AsyncStream<ServiceState<ServiceModel>>
+
+    var currentServiceState: ServiceState<ServiceModel> { get }
+    var mostRecentLoadedServiceState: ServiceState<ServiceModel>? { get }
+    var continuations: [ServiceContinuation.Continuation] { get set }
+
+    func load()
+}
+
+public extension ServiceProtocol {
+    mutating func subscribe() -> ServiceContinuation {
+        let stream = AsyncStream(ServiceState<ServiceModel>.self) { continuation in
+            continuations.append(continuation)
+        }
+
+        return stream
+    }
+
+    func updateSubscribers() {
+        for continuation in continuations {
+            let currentServiceState = self.currentServiceState
+            continuation.yield(currentServiceState)
+        }
+    }
+}
+
+public struct LogServiceData {
     var logEntries: [LogEntry]
 }
 
 public class LogService: ServiceProtocol {
-    typealias ServiceModel = LogServiceData
+    public typealias ServiceModel = LogServiceData
     
     private var logEntries: [LogEntry] = []
     private var isPaused: Bool = false
@@ -27,21 +81,22 @@ public class LogService: ServiceProtocol {
     private var logStore: OSLogStore?
     private var pollTimer: Timer?
     private var lastPollDate: Date?
-    private let updateInterval: TimeInterval = 0.5
+    private var pollLogsTask: Task<Void, Never>?
+    private let updateInterval: TimeInterval = 1.0
     private let logger = Logger(subsystem: "com.logviewer.service", category: "LogService")
     
     // ServiceProtocol requirements
-    var continuations: [ServiceContinuation.Continuation] = []
+    public var continuations: [ServiceContinuation.Continuation] = []
     
-    var currentServiceState: ServiceState<LogServiceData> {
+    public var currentServiceState: ServiceState<LogServiceData> {
         return .loaded(LogServiceData(logEntries: logEntries))
     }
     
-    var mostRecentLoadedServiceState: ServiceState<LogServiceData>? {
+    public var mostRecentLoadedServiceState: ServiceState<LogServiceData>? {
         return currentServiceState
     }
     
-    init() {
+    public init() {
         logger.info("LogService initializing...")
         setupLogStore()
         loadCategories()
@@ -96,37 +151,50 @@ public class LogService: ServiceProtocol {
               let lastDate = lastPollDate else {
             return
         }
-        
-        do {
-            let entries = try logStore.getEntries(matching: nil)
-            let entriesArray = Array(entries)
-            lastPollDate = Date()
-            
-            let newEntries = entriesArray.compactMap { entry -> LogEntry? in
-                guard let logEntry = entry as? OSLogEntryLog,
-                      logEntry.date >= lastDate else {
-                    return nil
+
+        guard pollLogsTask == nil else {
+            return
+        }
+
+        pollLogsTask = Task {
+            do {
+                let entries = try logStore.getEntries(matching: nil)
+                let entriesArray = Array(entries)
+                lastPollDate = Date()
+
+                let newEntries = entriesArray.compactMap { entry -> LogEntry? in
+                    guard let logEntry = entry as? OSLogEntryLog,
+                          logEntry.date >= lastDate else {
+                        return nil
+                    }
+
+                    return LogEntry(
+                        timestamp: logEntry.date,
+                        level: logEntry.level,
+                        category: logEntry.category,
+                        subsystem: logEntry.subsystem,
+                        message: logEntry.composedMessage
+                    )
                 }
-                
-                return LogEntry(
-                    timestamp: logEntry.date,
-                    level: logEntry.level,
-                    category: logEntry.category,
-                    subsystem: logEntry.subsystem,
-                    message: logEntry.composedMessage
-                )
-            }
-            
-            if !newEntries.isEmpty {
+
+                if !newEntries.isEmpty {
+                    DispatchQueue.main.async {
+                        self.pollLogsTask = nil
+                        self.logEntries.append(contentsOf: newEntries)
+                        self.logger.debug("Added \(newEntries.count) new log entries (total: \(self.logEntries.count))")
+                        self.updateSubscribers()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.pollLogsTask = nil
+                    }
+                }
+            } catch {
+                logger.error("Failed to poll logs: \(error.localizedDescription)")
                 DispatchQueue.main.async {
-                    self.logEntries.append(contentsOf: newEntries)
-                    
-                    self.logger.debug("Added \(newEntries.count) new log entries (total: \(self.logEntries.count))")
-                    self.updateSubscribers()
+                    self.pollLogsTask = nil
                 }
             }
-        } catch {
-            logger.error("Failed to poll logs: \(error.localizedDescription)")
         }
     }
     
@@ -198,7 +266,7 @@ public class LogService: ServiceProtocol {
     }
     
     // ServiceProtocol requirement
-    func load() {
+    public func load() {
         updateSubscribers()
     }
     

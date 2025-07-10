@@ -3,7 +3,7 @@ import OSLog
 import SwiftUI
 
 @MainActor
-class LogViewModel: ObservableObject {
+public class LogViewModel: ObservableObject {
     @Published private(set) var allLogEntries: [LogEntry] = []
     @Published private(set) var isPaused: Bool = false
     @Published var searchText: String = "" {
@@ -29,7 +29,7 @@ class LogViewModel: ObservableObject {
     private let logger = Logger(subsystem: "com.logviewer.app", category: "UI")
     private var filteringTask: Task<Void, Never>?
     
-    init(logService: LogService) {
+    public init(logService: LogService) {
         self.logService = logService
         
         // Initial values

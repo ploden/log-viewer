@@ -5,6 +5,7 @@
 //  Created by Philip Loden on 4/2/25.
 //
 
+/*
 public enum ServiceState<T: Any> {
     case stopped
     case loading
@@ -29,3 +30,4 @@ extension ServiceState: Equatable {
         }
     }
 }
+*/

@@ -9,22 +9,36 @@ let package = Package(
         .macOS(.v14)
     ],
     products: [
+        /*
         .executable(
             name: "LogViewer",
             targets: ["LogViewer"]
         ),
+         */
+        .library(name: "LogViewer", targets: ["LogViewer"])
     ],
     dependencies: [
-        // Add any external dependencies here if needed
+        //.package(name: "ServiceProtocol", url: "https://github.com/ploden/service-protocol", from: "0.1.1")
     ],
     targets: [
-        .executableTarget(
+        .target(
             name: "LogViewer",
             dependencies: [],
+            //exclude: ["LogViewerDemo"],
             resources: [
                 .process("Resources")
             ]
         ),
+        /*
+        .executableTarget(
+            name: "LogViewer",
+            dependencies: [],
+            //exclude: ["LogViewerDemo"],
+            resources: [
+                .process("Resources")
+            ]
+        ),
+         */
         .testTarget(
             name: "LogViewerTests",
             dependencies: ["LogViewer"]

@@ -1,0 +1,625 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8DC89EEA2E1F775500BB910E /* LogViewer in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC89EE92E1F775500BB910E /* LogViewer */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8DED5AA92E1E9F6400D618D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D330ACD2DE0297D0075A06C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DED5A9A2E1E9F6200D618D5;
+			remoteInfo = LogViewerDemo;
+		};
+		8DED5AB32E1E9F6400D618D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D330ACD2DE0297D0075A06C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DED5A9A2E1E9F6200D618D5;
+			remoteInfo = LogViewerDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8D09C8042DE89F5A00E48652 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8D09C8062DE89F5A00E48652 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8D09C8072DE89F5A00E48652 /* LoggerSettings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = LoggerSettings.plist; sourceTree = "<group>"; };
+		8D09C8082DE89F5A00E48652 /* LogViewerDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LogViewerDemo.entitlements; sourceTree = "<group>"; };
+		8D09C8092DE89F5A00E48652 /* LogViewerDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewerDemo.swift; sourceTree = "<group>"; };
+		8D09C80A2DE89F5A00E48652 /* LogViewerLoggerSettings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = LogViewerLoggerSettings.plist; sourceTree = "<group>"; };
+		8D09C8112DE89F7C00E48652 /* LogViewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewerTests.swift; sourceTree = "<group>"; };
+		8DC89EE82E1F772600BB910E /* LogViewer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LogViewer; path = ..; sourceTree = "<group>"; };
+		8DED5A9B2E1E9F6200D618D5 /* LogViewerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogViewerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DED5AA82E1E9F6400D618D5 /* LogViewerDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogViewerDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DED5AB22E1E9F6400D618D5 /* LogViewerDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogViewerDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		8DED5A9C2E1E9F6200D618D5 /* LogViewerDemo */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = LogViewerDemo;
+			sourceTree = "<group>";
+		};
+		8DED5AAB2E1E9F6400D618D5 /* LogViewerDemoTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = LogViewerDemoTests;
+			sourceTree = "<group>";
+		};
+		8DED5AB52E1E9F6400D618D5 /* LogViewerDemoUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = LogViewerDemoUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DED5A982E1E9F6200D618D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC89EEA2E1F775500BB910E /* LogViewer in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DED5AA52E1E9F6400D618D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DED5AAF2E1E9F6400D618D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8D09C8052DE89F5A00E48652 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				8D09C8042DE89F5A00E48652 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8D09C80B2DE89F5A00E48652 /* LogViewerDemo */ = {
+			isa = PBXGroup;
+			children = (
+				8D09C8052DE89F5A00E48652 /* Preview Content */,
+				8D09C8062DE89F5A00E48652 /* Assets.xcassets */,
+				8D09C8072DE89F5A00E48652 /* LoggerSettings.plist */,
+				8D09C8082DE89F5A00E48652 /* LogViewerDemo.entitlements */,
+				8D09C8092DE89F5A00E48652 /* LogViewerDemo.swift */,
+				8D09C80A2DE89F5A00E48652 /* LogViewerLoggerSettings.plist */,
+			);
+			path = LogViewerDemo;
+			sourceTree = "<group>";
+		};
+		8D09C8122DE89F7C00E48652 /* LogViewerDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				8D09C8112DE89F7C00E48652 /* LogViewerTests.swift */,
+			);
+			path = LogViewerDemoTests;
+			sourceTree = "<group>";
+		};
+		8D330ACC2DE0297D0075A06C = {
+			isa = PBXGroup;
+			children = (
+				8D09C8122DE89F7C00E48652 /* LogViewerDemoTests */,
+				8D09C80B2DE89F5A00E48652 /* LogViewerDemo */,
+				8DED5A9C2E1E9F6200D618D5 /* LogViewerDemo */,
+				8DED5AAB2E1E9F6400D618D5 /* LogViewerDemoTests */,
+				8DED5AB52E1E9F6400D618D5 /* LogViewerDemoUITests */,
+				8DED5AD22E1F6C9E00D618D5 /* Frameworks */,
+				8D330AD62DE0297D0075A06C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8D330AD62DE0297D0075A06C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DED5A9B2E1E9F6200D618D5 /* LogViewerDemo.app */,
+				8DED5AA82E1E9F6400D618D5 /* LogViewerDemoTests.xctest */,
+				8DED5AB22E1E9F6400D618D5 /* LogViewerDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8DED5AD22E1F6C9E00D618D5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8DC89EE82E1F772600BB910E /* LogViewer */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8DED5A9A2E1E9F6200D618D5 /* LogViewerDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8DED5ABA2E1E9F6400D618D5 /* Build configuration list for PBXNativeTarget "LogViewerDemo" */;
+			buildPhases = (
+				8DED5A972E1E9F6200D618D5 /* Sources */,
+				8DED5A982E1E9F6200D618D5 /* Frameworks */,
+				8DED5A992E1E9F6200D618D5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				8DED5A9C2E1E9F6200D618D5 /* LogViewerDemo */,
+			);
+			name = LogViewerDemo;
+			packageProductDependencies = (
+				8DC89EE92E1F775500BB910E /* LogViewer */,
+			);
+			productName = LogViewerDemo;
+			productReference = 8DED5A9B2E1E9F6200D618D5 /* LogViewerDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8DED5AA72E1E9F6400D618D5 /* LogViewerDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8DED5ABD2E1E9F6400D618D5 /* Build configuration list for PBXNativeTarget "LogViewerDemoTests" */;
+			buildPhases = (
+				8DED5AA42E1E9F6400D618D5 /* Sources */,
+				8DED5AA52E1E9F6400D618D5 /* Frameworks */,
+				8DED5AA62E1E9F6400D618D5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8DED5AAA2E1E9F6400D618D5 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8DED5AAB2E1E9F6400D618D5 /* LogViewerDemoTests */,
+			);
+			name = LogViewerDemoTests;
+			packageProductDependencies = (
+			);
+			productName = LogViewerDemoTests;
+			productReference = 8DED5AA82E1E9F6400D618D5 /* LogViewerDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8DED5AB12E1E9F6400D618D5 /* LogViewerDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8DED5AC02E1E9F6400D618D5 /* Build configuration list for PBXNativeTarget "LogViewerDemoUITests" */;
+			buildPhases = (
+				8DED5AAE2E1E9F6400D618D5 /* Sources */,
+				8DED5AAF2E1E9F6400D618D5 /* Frameworks */,
+				8DED5AB02E1E9F6400D618D5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8DED5AB42E1E9F6400D618D5 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8DED5AB52E1E9F6400D618D5 /* LogViewerDemoUITests */,
+			);
+			name = LogViewerDemoUITests;
+			packageProductDependencies = (
+			);
+			productName = LogViewerDemoUITests;
+			productReference = 8DED5AB22E1E9F6400D618D5 /* LogViewerDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8D330ACD2DE0297D0075A06C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					8DED5A9A2E1E9F6200D618D5 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					8DED5AA72E1E9F6400D618D5 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 8DED5A9A2E1E9F6200D618D5;
+					};
+					8DED5AB12E1E9F6400D618D5 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 8DED5A9A2E1E9F6200D618D5;
+					};
+				};
+			};
+			buildConfigurationList = 8D330AD02DE0297D0075A06C /* Build configuration list for PBXProject "LogViewerDemo" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8D330ACC2DE0297D0075A06C;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 8D330AD62DE0297D0075A06C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DED5A9A2E1E9F6200D618D5 /* LogViewerDemo */,
+				8DED5AA72E1E9F6400D618D5 /* LogViewerDemoTests */,
+				8DED5AB12E1E9F6400D618D5 /* LogViewerDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8DED5A992E1E9F6200D618D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DED5AA62E1E9F6400D618D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DED5AB02E1E9F6400D618D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DED5A972E1E9F6200D618D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DED5AA42E1E9F6400D618D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DED5AAE2E1E9F6400D618D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8DED5AAA2E1E9F6400D618D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DED5A9A2E1E9F6200D618D5 /* LogViewerDemo */;
+			targetProxy = 8DED5AA92E1E9F6400D618D5 /* PBXContainerItemProxy */;
+		};
+		8DED5AB42E1E9F6400D618D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DED5A9A2E1E9F6200D618D5 /* LogViewerDemo */;
+			targetProxy = 8DED5AB32E1E9F6400D618D5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		8D330AF82DE0297E0075A06C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TBXJHZ7UDC;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8D330AF92DE0297E0075A06C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TBXJHZ7UDC;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		8DED5ABB2E1E9F6400D618D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LogViewerDemo/LogViewerDemo.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.itsanapp.LogViewerDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8DED5ABC2E1E9F6400D618D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LogViewerDemo/LogViewerDemo.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.itsanapp.LogViewerDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		8DED5ABE2E1E9F6400D618D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.itsanapp.LogViewerDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LogViewerDemo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LogViewerDemo";
+			};
+			name = Debug;
+		};
+		8DED5ABF2E1E9F6400D618D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.itsanapp.LogViewerDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LogViewerDemo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LogViewerDemo";
+			};
+			name = Release;
+		};
+		8DED5AC12E1E9F6400D618D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.itsanapp.LogViewerDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = LogViewerDemo;
+			};
+			name = Debug;
+		};
+		8DED5AC22E1E9F6400D618D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.itsanapp.LogViewerDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = LogViewerDemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8D330AD02DE0297D0075A06C /* Build configuration list for PBXProject "LogViewerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D330AF82DE0297E0075A06C /* Debug */,
+				8D330AF92DE0297E0075A06C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8DED5ABA2E1E9F6400D618D5 /* Build configuration list for PBXNativeTarget "LogViewerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DED5ABB2E1E9F6400D618D5 /* Debug */,
+				8DED5ABC2E1E9F6400D618D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8DED5ABD2E1E9F6400D618D5 /* Build configuration list for PBXNativeTarget "LogViewerDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DED5ABE2E1E9F6400D618D5 /* Debug */,
+				8DED5ABF2E1E9F6400D618D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8DED5AC02E1E9F6400D618D5 /* Build configuration list for PBXNativeTarget "LogViewerDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DED5AC12E1E9F6400D618D5 /* Debug */,
+				8DED5AC22E1E9F6400D618D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8DC89EE92E1F775500BB910E /* LogViewer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LogViewer;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 8D330ACD2DE0297D0075A06C /* Project object */;
+}

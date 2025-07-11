@@ -9,16 +9,18 @@ import SwiftUI
 import OSLog
 
 public struct ContentView: View {
-    @EnvironmentObject private var viewModel: LogViewModel
+    @StateObject private var viewModel: LogViewModel
     @State private var showSidebar = true
     private let logger = Logger(subsystem: "com.logviewer.app", category: "UI")
     
-    public init() {}
+    public init(viewModel: LogViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
 
     public var body: some View {
         NavigationSplitView {
             if showSidebar {
-                SidebarView()
+                SidebarView(viewModel: self.viewModel)
             }
         } detail: {
             LogView(viewModel: viewModel, showSidebar: $showSidebar)
@@ -36,10 +38,14 @@ struct CategoryLogLevels: Identifiable {
 }
 
 struct SidebarView: View {
-    @EnvironmentObject private var viewModel: LogViewModel
+    private var viewModel: LogViewModel
     @State private var expandedCategories: Set<String> = []
     private let logger = Logger(subsystem: "com.logviewer.app", category: "UI")
-    
+
+    public init(viewModel: LogViewModel) {
+        self.viewModel = viewModel
+    }
+
     var body: some View {
         List {
             Section("Global Log Levels") {
@@ -125,7 +131,8 @@ extension OSLogEntryLog.Level {
     }
 }
 
+/*
 #Preview {
     ContentView()
-        .environmentObject(LogViewModel(logService: LogService()))
 }
+*/

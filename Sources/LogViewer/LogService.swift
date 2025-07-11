@@ -9,65 +9,15 @@ import Foundation
 import OSLog
 import Combine
 import SwiftUI
-
-public enum ServiceState<T: Any> {
-    case stopped
-    case loading
-    case loaded(T)
-    case error(Error)
-}
-
-extension ServiceState: Equatable {
-    public static func == (lhs: ServiceState, rhs: ServiceState) -> Bool {
-        switch (lhs, rhs) {
-        case (.loaded(let lhsData), .loaded(let rhsData)):
-            //return lhsData == rhsData
-            return true
-        case (.loading, .loading):
-            return true
-        case (.stopped, .stopped):
-            return true
-        case (.error(let lhsError), .error(let rhsError)):
-            return lhsError.localizedDescription == rhsError.localizedDescription
-        default:
-            return false
-        }
-    }
-}
-
-public protocol ServiceProtocol {
-    associatedtype ServiceModel
-    typealias ServiceContinuation = AsyncStream<ServiceState<ServiceModel>>
-
-    var currentServiceState: ServiceState<ServiceModel> { get }
-    var mostRecentLoadedServiceState: ServiceState<ServiceModel>? { get }
-    var continuations: [ServiceContinuation.Continuation] { get set }
-
-    func load()
-}
-
-public extension ServiceProtocol {
-    mutating func subscribe() -> ServiceContinuation {
-        let stream = AsyncStream(ServiceState<ServiceModel>.self) { continuation in
-            continuations.append(continuation)
-        }
-
-        return stream
-    }
-
-    func updateSubscribers() {
-        for continuation in continuations {
-            let currentServiceState = self.currentServiceState
-            continuation.yield(currentServiceState)
-        }
-    }
-}
+import ServiceProtocol
 
 public struct LogServiceData {
     var logEntries: [LogEntry]
 }
 
 public class LogService: ServiceProtocol {
+    public func stop() {}
+    
     public typealias ServiceModel = LogServiceData
     
     private var logEntries: [LogEntry] = []

@@ -71,7 +71,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 }
 
 extension AppDelegate: NSWindowDelegate {
-    func windowWillClose(_ notification: Notification) {
+    func windowDidClose(_ notification: Notification) {
         guard let window = notification.object as? NSWindow else { return }
 
         if window == logWindow {

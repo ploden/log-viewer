@@ -25,7 +25,7 @@ public class LogViewModel: ObservableObject {
     
     @Published private(set) var logEntries: [LogEntry] = []
     
-    private var logService: LogService
+    private(set) var logService: LogService
     private let logger = Logger(subsystem: "com.logviewer.app", category: "UI")
     private var filteringTask: Task<Void, Never>?
     

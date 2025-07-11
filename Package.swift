@@ -18,12 +18,14 @@ let package = Package(
         .library(name: "LogViewer", targets: ["LogViewer"])
     ],
     dependencies: [
-        //.package(name: "ServiceProtocol", url: "https://github.com/ploden/service-protocol", from: "0.1.1")
+        .package(name: "ServiceProtocol", url: "https://github.com/ploden/service-protocol", from: "0.2.1")
     ],
     targets: [
         .target(
             name: "LogViewer",
-            dependencies: [],
+            dependencies: [
+                .product(name: "ServiceProtocol", package: "ServiceProtocol")
+            ],
             //exclude: ["LogViewerDemo"],
             resources: [
                 .process("Resources")

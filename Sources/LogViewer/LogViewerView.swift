@@ -44,21 +44,49 @@ struct LogViewerView: View {
             }
             .help("Clear logs")
             
+            Toggle(isOn: $viewModel.isAutoScrollEnabled) {
+                Image(systemName: "arrow.down.to.line")
+            }
+            .toggleStyle(.button)
+            .help(viewModel.isAutoScrollEnabled ? "Auto-scroll enabled" : "Auto-scroll disabled")
+            .onChange(of: viewModel.isAutoScrollEnabled) { oldValue, newValue in
+                if newValue {
+                    logger.info("Auto-scroll enabled")
+                } else {
+                    logger.info("Auto-scroll disabled")
+                }
+            }
+            
             SearchBar(text: $viewModel.searchText, logger: logger)
         }
         .padding()
     }
     
     private var logList: some View {
-        ScrollView {
-            LazyVStack(alignment: .leading, spacing: 0) {
-                ForEach(viewModel.logEntries) { entry in
-                    LogEntryRow(entry: entry)
-                        .padding(.horizontal, 12)
+        ScrollViewReader { proxy in
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: 0) {
+                    ForEach(viewModel.logEntries) { entry in
+                        LogEntryRow(entry: entry)
+                            .padding(.horizontal, 12)
+                            .id(entry.id)
+                    }
+                }
+            }
+            .background(.white)
+            .onReceive(NotificationCenter.default.publisher(for: NSScrollView.didLiveScrollNotification)) { _ in
+                // Detect manual scrolling and disable auto-scroll
+                viewModel.disableAutoScroll()
+            }
+            .onChange(of: viewModel.logEntries.count) { oldCount, newCount in
+                // Auto-scroll to bottom when new entries are added
+                if viewModel.isAutoScrollEnabled && newCount > oldCount && !viewModel.logEntries.isEmpty {
+                    withAnimation(.easeOut(duration: 0.3)) {
+                        proxy.scrollTo(viewModel.logEntries.last?.id, anchor: .bottom)
+                    }
                 }
             }
         }
-        .background(.white)
     }
 }
 

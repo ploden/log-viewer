@@ -1,0 +1,4 @@
+module LogViewer {
+    header "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogViewer-Swift.h"
+    requires objc
+}

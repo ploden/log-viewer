@@ -1,0 +1,4 @@
+module ServiceProtocol {
+    header "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/ServiceProtocol-Swift.h"
+    requires objc
+}

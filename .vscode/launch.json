@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:log-viewer}",
+            "name": "Debug LogViewerDemo",
+            "program": "${workspaceFolder:log-viewer}/.build/debug/LogViewerDemo",
+            "preLaunchTask": "swift: Build Debug LogViewerDemo"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:log-viewer}",
+            "name": "Release LogViewerDemo",
+            "program": "${workspaceFolder:log-viewer}/.build/release/LogViewerDemo",
+            "preLaunchTask": "swift: Build Release LogViewerDemo"
+        }
+    ]
+}

@@ -1,0 +1,4 @@
+module LogViewerPackageTests {
+    header "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.build/LogViewerPackageTests-Swift.h"
+    requires objc
+}

@@ -21,6 +21,7 @@ public class LogViewerViewModel: ObservableObject {
             updateFilteredEntries()
         }
     }
+    @Published var isAutoScrollEnabled: Bool = true
     
     @Published var logEntries: [LogEntry] = []
     
@@ -138,6 +139,18 @@ public class LogViewerViewModel: ObservableObject {
     func createTestLog() {
         logger.notice("TEST: User clicked test log button in LogViewModel")
         logService.testLogStatement()
+    }
+    
+    func toggleAutoScroll() {
+        isAutoScrollEnabled.toggle()
+        logger.info("Auto-scroll toggled to: \(self.isAutoScrollEnabled)")
+    }
+    
+    func disableAutoScroll() {
+        if isAutoScrollEnabled {
+            isAutoScrollEnabled = false
+            logger.info("Auto-scroll disabled due to manual scroll")
+        }
     }
 }
 

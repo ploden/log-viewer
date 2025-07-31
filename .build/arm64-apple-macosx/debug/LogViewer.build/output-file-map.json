@@ -1,0 +1,59 @@
+{
+  "": {
+    "swift-dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/master.swiftdeps"
+  },
+  "/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/ContentView.swift": {
+    "dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/ContentView.d",
+    "object": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/ContentView.swift.o",
+    "swiftmodule": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/ContentView~partial.swiftmodule",
+    "swift-dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/ContentView.swiftdeps"
+  },
+  "/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/LogCategory.swift": {
+    "dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogCategory.d",
+    "object": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogCategory.swift.o",
+    "swiftmodule": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogCategory~partial.swiftmodule",
+    "swift-dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogCategory.swiftdeps"
+  },
+  "/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/LogCategoryViewModel.swift": {
+    "dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogCategoryViewModel.d",
+    "object": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogCategoryViewModel.swift.o",
+    "swiftmodule": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogCategoryViewModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogCategoryViewModel.swiftdeps"
+  },
+  "/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/LogEntry.locked.swift": {
+    "dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogEntry.locked.d",
+    "object": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogEntry.locked.swift.o",
+    "swiftmodule": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogEntry.locked~partial.swiftmodule",
+    "swift-dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogEntry.locked.swiftdeps"
+  },
+  "/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/LogService.swift": {
+    "dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogService.d",
+    "object": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogService.swift.o",
+    "swiftmodule": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogService~partial.swiftmodule",
+    "swift-dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogService.swiftdeps"
+  },
+  "/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/LogViewerView.swift": {
+    "dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogViewerView.d",
+    "object": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogViewerView.swift.o",
+    "swiftmodule": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogViewerView~partial.swiftmodule",
+    "swift-dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogViewerView.swiftdeps"
+  },
+  "/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/LogViewerViewModel.swift": {
+    "dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogViewerViewModel.d",
+    "object": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogViewerViewModel.swift.o",
+    "swiftmodule": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogViewerViewModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogViewerViewModel.swiftdeps"
+  },
+  "/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/NSApplicationDelegate.swift": {
+    "dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/NSApplicationDelegate.d",
+    "object": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/NSApplicationDelegate.swift.o",
+    "swiftmodule": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/NSApplicationDelegate~partial.swiftmodule",
+    "swift-dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/NSApplicationDelegate.swiftdeps"
+  },
+  "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/DerivedSources/resource_bundle_accessor.swift": {
+    "dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/resource_bundle_accessor.d",
+    "object": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/resource_bundle_accessor.swift.o",
+    "swiftmodule": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/resource_bundle_accessor~partial.swiftmodule",
+    "swift-dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/resource_bundle_accessor.swiftdeps"
+  }
+}

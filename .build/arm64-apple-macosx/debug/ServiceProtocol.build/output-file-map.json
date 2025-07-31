@@ -1,0 +1,23 @@
+{
+  "": {
+    "swift-dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/master.swiftdeps"
+  },
+  "/Users/ploden/cursor_workspace/v2/log-viewer/.build/checkouts/service-protocol/Sources/ServiceProtocol/ServiceProtocol.locked.swift": {
+    "dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/ServiceProtocol.locked.d",
+    "object": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/ServiceProtocol.locked.swift.o",
+    "swiftmodule": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/ServiceProtocol.locked~partial.swiftmodule",
+    "swift-dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/ServiceProtocol.locked.swiftdeps"
+  },
+  "/Users/ploden/cursor_workspace/v2/log-viewer/.build/checkouts/service-protocol/Sources/ServiceProtocol/ServiceState.locked.swift": {
+    "dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/ServiceState.locked.d",
+    "object": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/ServiceState.locked.swift.o",
+    "swiftmodule": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/ServiceState.locked~partial.swiftmodule",
+    "swift-dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/ServiceState.locked.swiftdeps"
+  },
+  "/Users/ploden/cursor_workspace/v2/log-viewer/.build/checkouts/service-protocol/Sources/ServiceProtocol/TestService.swift": {
+    "dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/TestService.d",
+    "object": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/TestService.swift.o",
+    "swiftmodule": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/TestService~partial.swiftmodule",
+    "swift-dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/TestService.swiftdeps"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "object" : {
+    "artifacts" : [
+
+    ],
+    "dependencies" : [
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "service-protocol",
+          "kind" : "remoteSourceControl",
+          "location" : "https://github.com/ploden/service-protocol",
+          "name" : "ServiceProtocol"
+        },
+        "state" : {
+          "checkoutState" : {
+            "revision" : "d2942ac9ba4c41992b266c971700fd483ea2cdd0",
+            "version" : "0.2.1"
+          },
+          "name" : "sourceControlCheckout"
+        },
+        "subpath" : "service-protocol"
+      }
+    ]
+  },
+  "version" : 6
+}

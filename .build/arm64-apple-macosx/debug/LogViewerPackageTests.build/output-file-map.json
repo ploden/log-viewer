@@ -1,0 +1,11 @@
+{
+  "": {
+    "swift-dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.build/master.swiftdeps"
+  },
+  "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.derived/runner.swift": {
+    "dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.build/runner.d",
+    "object": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.build/runner.swift.o",
+    "swiftmodule": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.build/runner~partial.swiftmodule",
+    "swift-dependencies": "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.build/runner.swiftdeps"
+  }
+}

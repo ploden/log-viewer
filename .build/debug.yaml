@@ -1,0 +1,154 @@
+client:
+  name: basic
+  file-system: device-agnostic
+tools: {}
+targets:
+  "LogViewer-arm64-apple-macosx15.0-debug.module": ["<LogViewer-arm64-apple-macosx15.0-debug.module>"]
+  "LogViewerPackageTests-arm64-apple-macosx15.0-debug.module": ["<LogViewerPackageTests-arm64-apple-macosx15.0-debug.module>"]
+  "LogViewerPackageTests-arm64-apple-macosx15.0-debug.test": ["<LogViewerPackageTests-arm64-apple-macosx15.0-debug.test>"]
+  "LogViewerTests-arm64-apple-macosx15.0-debug.module": ["<LogViewerTests-arm64-apple-macosx15.0-debug.module>"]
+  "PackageStructure": ["<PackageStructure>"]
+  "ServiceProtocol-arm64-apple-macosx15.0-debug.module": ["<ServiceProtocol-arm64-apple-macosx15.0-debug.module>"]
+  "main": ["<LogViewer-arm64-apple-macosx15.0-debug.module>"]
+  "test": ["<LogViewer-arm64-apple-macosx15.0-debug.module>","<LogViewerPackageTests-arm64-apple-macosx15.0-debug.test>","<LogViewerTests-arm64-apple-macosx15.0-debug.module>"]
+default: "main"
+nodes:
+  "/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+  "/Users/ploden/cursor_workspace/v2/log-viewer/Tests/LogViewerTests/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+commands:
+  "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/ContentView.swift","/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/LogCategory.swift","/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/LogCategoryViewModel.swift","/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/LogEntry.locked.swift","/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/LogService.swift","/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/LogViewerView.swift","/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/LogViewerViewModel.swift","/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/NSApplicationDelegate.swift","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/DerivedSources/resource_bundle_accessor.swift"]
+    outputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/sources"]
+    description: "Write auxiliary file /Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/sources"
+
+  "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.derived/runner.swift"]
+    outputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.build/sources"]
+    description: "Write auxiliary file /Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.build/sources"
+
+  "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.derived/runner.swift":
+    tool: test-entry-point-tool
+    inputs: []
+    outputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.derived/runner.swift"]
+
+  "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.product/Objects.LinkFileList":
+    tool: write-auxiliary-file
+    inputs: ["<link-file-list>","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/ContentView.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogCategory.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogCategoryViewModel.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogEntry.locked.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogService.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogViewerView.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogViewerViewModel.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/NSApplicationDelegate.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/resource_bundle_accessor.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.build/runner.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerTests.build/LogViewerTests.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/ServiceProtocol.locked.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/ServiceState.locked.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/TestService.swift.o"]
+    outputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.product/Objects.LinkFileList"]
+    description: "Write auxiliary file /Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.product/Objects.LinkFileList"
+
+  "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerTests.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/ploden/cursor_workspace/v2/log-viewer/Tests/LogViewerTests/LogViewerTests.swift"]
+    outputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerTests.build/sources"]
+    description: "Write auxiliary file /Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerTests.build/sources"
+
+  "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer_LogViewer.bundle/Assets.xcassets":
+    tool: copy-tool
+    inputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/Resources/Assets.xcassets/"]
+    outputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer_LogViewer.bundle/Assets.xcassets/"]
+    description: "Copying /Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/Resources/Assets.xcassets"
+
+  "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer_LogViewer.bundle/LogViewerLoggerSettings.plist":
+    tool: copy-tool
+    inputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/Resources/LogViewerLoggerSettings.plist"]
+    outputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer_LogViewer.bundle/LogViewerLoggerSettings.plist"]
+    description: "Copying /Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/Resources/LogViewerLoggerSettings.plist"
+
+  "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer_LogViewer.bundle/LoggerSettings.plist":
+    tool: copy-tool
+    inputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/Resources/LoggerSettings.plist"]
+    outputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer_LogViewer.bundle/LoggerSettings.plist"]
+    description: "Copying /Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/Resources/LoggerSettings.plist"
+
+  "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/ploden/cursor_workspace/v2/log-viewer/.build/checkouts/service-protocol/Sources/ServiceProtocol/ServiceProtocol.locked.swift","/Users/ploden/cursor_workspace/v2/log-viewer/.build/checkouts/service-protocol/Sources/ServiceProtocol/ServiceState.locked.swift","/Users/ploden/cursor_workspace/v2/log-viewer/.build/checkouts/service-protocol/Sources/ServiceProtocol/TestService.swift"]
+    outputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/sources"]
+    description: "Write auxiliary file /Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/sources"
+
+  "/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt":
+    tool: write-auxiliary-file
+    inputs: ["<swift-get-version>","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"]
+    outputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"]
+    always-out-of-date: "true"
+    description: "Write auxiliary file /Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+
+  "<LogViewer-arm64-apple-macosx15.0-debug.module>":
+    tool: phony
+    inputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/ContentView.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogCategory.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogCategoryViewModel.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogEntry.locked.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogService.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogViewerView.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogViewerViewModel.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/NSApplicationDelegate.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/resource_bundle_accessor.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules/LogViewer.swiftmodule"]
+    outputs: ["<LogViewer-arm64-apple-macosx15.0-debug.module>"]
+
+  "<LogViewerPackageTests-arm64-apple-macosx15.0-debug.module>":
+    tool: phony
+    inputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.build/runner.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules/LogViewerPackageTests.swiftmodule"]
+    outputs: ["<LogViewerPackageTests-arm64-apple-macosx15.0-debug.module>"]
+
+  "<LogViewerPackageTests-arm64-apple-macosx15.0-debug.test>":
+    tool: phony
+    inputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.xctest/Contents/MacOS/LogViewerPackageTests"]
+    outputs: ["<LogViewerPackageTests-arm64-apple-macosx15.0-debug.test>"]
+
+  "<LogViewerTests-arm64-apple-macosx15.0-debug.module>":
+    tool: phony
+    inputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerTests.build/LogViewerTests.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules/LogViewerTests.swiftmodule"]
+    outputs: ["<LogViewerTests-arm64-apple-macosx15.0-debug.module>"]
+
+  "<ServiceProtocol-arm64-apple-macosx15.0-debug.module>":
+    tool: phony
+    inputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/ServiceProtocol.locked.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/ServiceState.locked.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/TestService.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules/ServiceProtocol.swiftmodule"]
+    outputs: ["<ServiceProtocol-arm64-apple-macosx15.0-debug.module>"]
+
+  "C.LogViewer-arm64-apple-macosx15.0-debug.module":
+    tool: shell
+    inputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/ContentView.swift","/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/LogCategory.swift","/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/LogCategoryViewModel.swift","/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/LogEntry.locked.swift","/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/LogService.swift","/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/LogViewerView.swift","/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/LogViewerViewModel.swift","/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/NSApplicationDelegate.swift","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/DerivedSources/resource_bundle_accessor.swift","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt","<LogViewer-arm64-apple-macosx15.0-debug.module-resources>","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules/ServiceProtocol.swiftmodule","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/sources"]
+    outputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/ContentView.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogCategory.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogCategoryViewModel.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogEntry.locked.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogService.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogViewerView.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogViewerViewModel.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/NSApplicationDelegate.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/resource_bundle_accessor.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules/LogViewer.swiftmodule"]
+    description: "Compiling Swift Module 'LogViewer' (9 sources)"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-module-name","LogViewer","-emit-dependencies","-emit-module","-emit-module-path","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules/LogViewer.swiftmodule","-output-file-map","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/output-file-map.json","-parse-as-library","-incremental","-c","@/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/sources","-I","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules","-target","arm64-apple-macosx14.0","-enable-batch-mode","-index-store-path","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/index/store","-Onone","-enable-testing","-j7","-DSWIFT_PACKAGE","-DDEBUG","-module-cache-path","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ModuleCache","-parseable-output","-parse-as-library","-emit-objc-header","-emit-objc-header-path","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogViewer-Swift.h","-color-diagnostics","-swift-version","5","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g","-Xcc","-isysroot","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-Xcc","-fPIC","-Xcc","-g","-package-name","log_viewer"]
+
+  "C.LogViewerPackageTests-arm64-apple-macosx15.0-debug.module":
+    tool: shell
+    inputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.derived/runner.swift","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules/LogViewerTests.swiftmodule","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.build/sources"]
+    outputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.build/runner.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules/LogViewerPackageTests.swiftmodule"]
+    description: "Compiling Swift Module 'LogViewerPackageTests' (1 sources)"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-module-name","LogViewerPackageTests","-emit-dependencies","-emit-module","-emit-module-path","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules/LogViewerPackageTests.swiftmodule","-output-file-map","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.build/output-file-map.json","-parse-as-library","-incremental","-c","@/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.build/sources","-I","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules","-target","arm64-apple-macosx14.0","-enable-batch-mode","-index-store-path","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/index/store","-Onone","-enable-testing","-j7","-DSWIFT_PACKAGE","-DDEBUG","-module-cache-path","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ModuleCache","-parseable-output","-parse-as-library","-emit-objc-header","-emit-objc-header-path","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.build/LogViewerPackageTests-Swift.h","-color-diagnostics","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g","-Xcc","-isysroot","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-Xcc","-fPIC","-Xcc","-g","-package-name","log_viewer"]
+
+  "C.LogViewerPackageTests-arm64-apple-macosx15.0-debug.test":
+    tool: shell
+    inputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/ContentView.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogCategory.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogCategoryViewModel.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogEntry.locked.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogService.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogViewerView.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/LogViewerViewModel.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/NSApplicationDelegate.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer.build/resource_bundle_accessor.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.build/runner.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerTests.build/LogViewerTests.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/ServiceProtocol.locked.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/ServiceState.locked.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/TestService.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.product/Objects.LinkFileList"]
+    outputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.xctest/Contents/MacOS/LogViewerPackageTests"]
+    description: "Linking ./.build/arm64-apple-macosx/debug/LogViewerPackageTests.xctest/Contents/MacOS/LogViewerPackageTests"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-L","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug","-o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.xctest/Contents/MacOS/LogViewerPackageTests","-module-name","LogViewerPackageTests","-Xlinker","-no_warn_duplicate_libraries","-Xlinker","-bundle","-Xlinker","-rpath","-Xlinker","@loader_path/../../../","@/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerPackageTests.product/Objects.LinkFileList","-target","arm64-apple-macosx14.0","-Xlinker","-add_ast_path","-Xlinker","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules/LogViewer.swiftmodule","-Xlinker","-add_ast_path","-Xlinker","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules/LogViewerPackageTests.swiftmodule","-Xlinker","-add_ast_path","-Xlinker","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules/LogViewerTests.swiftmodule","-Xlinker","-add_ast_path","-Xlinker","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules/ServiceProtocol.swiftmodule","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g"]
+
+  "C.LogViewerTests-arm64-apple-macosx15.0-debug.module":
+    tool: shell
+    inputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/Tests/LogViewerTests/LogViewerTests.swift","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules/LogViewer.swiftmodule","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerTests.build/sources"]
+    outputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerTests.build/LogViewerTests.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules/LogViewerTests.swiftmodule"]
+    description: "Compiling Swift Module 'LogViewerTests' (1 sources)"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-module-name","LogViewerTests","-emit-dependencies","-emit-module","-emit-module-path","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules/LogViewerTests.swiftmodule","-output-file-map","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerTests.build/output-file-map.json","-parse-as-library","-incremental","-c","@/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewerTests.build/sources","-I","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules","-target","arm64-apple-macosx14.0","-enable-batch-mode","-index-store-path","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/index/store","-Onone","-enable-testing","-j7","-DSWIFT_PACKAGE","-DDEBUG","-module-cache-path","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ModuleCache","-parseable-output","-parse-as-library","-color-diagnostics","-swift-version","5","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g","-Xcc","-isysroot","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-Xcc","-fPIC","-Xcc","-g","-package-name","log_viewer"]
+
+  "C.ServiceProtocol-arm64-apple-macosx15.0-debug.module":
+    tool: shell
+    inputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/checkouts/service-protocol/Sources/ServiceProtocol/ServiceProtocol.locked.swift","/Users/ploden/cursor_workspace/v2/log-viewer/.build/checkouts/service-protocol/Sources/ServiceProtocol/ServiceState.locked.swift","/Users/ploden/cursor_workspace/v2/log-viewer/.build/checkouts/service-protocol/Sources/ServiceProtocol/TestService.swift","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/sources"]
+    outputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/ServiceProtocol.locked.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/ServiceState.locked.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/TestService.swift.o","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules/ServiceProtocol.swiftmodule"]
+    description: "Compiling Swift Module 'ServiceProtocol' (3 sources)"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-module-name","ServiceProtocol","-emit-dependencies","-emit-module","-emit-module-path","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules/ServiceProtocol.swiftmodule","-output-file-map","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/output-file-map.json","-parse-as-library","-incremental","-c","@/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/sources","-I","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/Modules","-target","arm64-apple-macosx14.0","-enable-batch-mode","-index-store-path","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/index/store","-Onone","-enable-testing","-j7","-DSWIFT_PACKAGE","-DDEBUG","-module-cache-path","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ModuleCache","-parseable-output","-parse-as-library","-emit-objc-header","-emit-objc-header-path","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/ServiceProtocol.build/ServiceProtocol-Swift.h","-color-diagnostics","-swift-version","5","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g","-Xcc","-isysroot","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-Xcc","-fPIC","-Xcc","-g","-suppress-warnings","-package-name","service_protocol"]
+
+  "LogViewer-arm64-apple-macosx15.0-debug.module-resources":
+    tool: phony
+    inputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer_LogViewer.bundle/Assets.xcassets/","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer_LogViewer.bundle/LogViewerLoggerSettings.plist","/Users/ploden/cursor_workspace/v2/log-viewer/.build/arm64-apple-macosx/debug/LogViewer_LogViewer.bundle/LoggerSettings.plist"]
+    outputs: ["<LogViewer-arm64-apple-macosx15.0-debug.module-resources>"]
+
+  "PackageStructure":
+    tool: package-structure-tool
+    inputs: ["/Users/ploden/cursor_workspace/v2/log-viewer/Sources/LogViewer/","/Users/ploden/cursor_workspace/v2/log-viewer/Tests/LogViewerTests/","/Users/ploden/cursor_workspace/v2/log-viewer/Package.swift","/Users/ploden/cursor_workspace/v2/log-viewer/Package.resolved"]
+    outputs: ["<PackageStructure>"]
+    description: "Planning build"
+    allow-missing-inputs: true
+

@@ -118,12 +118,6 @@ public class LogService: ServiceProtocol {
         }
     }
     
-    func togglePause() {
-        isPaused.toggle()
-        logger.notice("Log monitoring \(self.isPaused ? "paused" : "resumed")")
-        updateSubscribers()
-    }
-    
     func clearLogs() {
         let previousCount = logEntries.count
         logEntries.removeAll()
@@ -131,26 +125,8 @@ public class LogService: ServiceProtocol {
         updateSubscribers()
     }
     
-    func getLogEntries() -> [LogEntry] {
-        return logEntries
-    }
-    
-    func getIsPaused() -> Bool {
-        return isPaused
-    }
-    
     func getAllAvailableCategories() -> Set<String> {
         return allAvailableCategories
-    }
-    
-    func setAvailableCategories(_ categories: Set<String>) {
-        allAvailableCategories = categories
-        for category in categories {
-            if categoryLogLevels[category] == nil {
-                categoryLogLevels[category] = [.debug, .info, .notice, .error, .fault]
-            }
-        }
-        updateSubscribers()
     }
     
     public func load() {

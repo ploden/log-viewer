@@ -30,12 +30,10 @@ struct LogViewerView: View {
     
     private var toolbar: some View {
         HStack {
-            Button(action: {
-                logger.info("User clicked pause/resume button")
-                viewModel.togglePause()
-            }) {
+            Toggle(isOn: $viewModel.isPaused) {
                 Image(systemName: viewModel.isPaused ? "play.fill" : "pause.fill")
             }
+            .toggleStyle(.button)
             .help(viewModel.isPaused ? "Resume logging" : "Pause logging")
             
             Button(action: {

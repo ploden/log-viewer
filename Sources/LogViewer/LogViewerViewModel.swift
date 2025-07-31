@@ -15,7 +15,7 @@ public class LogLevelWithSelectionState: ObservableObject, Identifiable {
 @MainActor
 public class LogViewerViewModel: ObservableObject {
     @Published var globalLogLevelsWithSelectionStates: [LogLevelWithSelectionState]
-    @Published var allLogEntries: [LogEntry] = []
+    private var allLogEntries: [LogEntry] = []
     @Published var isPaused: Bool = false
     @Published var searchText: String = "" {
         didSet {
@@ -35,8 +35,6 @@ public class LogViewerViewModel: ObservableObject {
         self.categoryViewModels = logCategories.compactMap { category in
             LogCategoryViewModel(category: category)
         }
-        allLogEntries = logService.getLogEntries()
-        isPaused = logService.getIsPaused()
         
         self.globalLogLevelsWithSelectionStates = [.debug, .info, .notice, .error, .fault].compactMap({ level in
             LogLevelWithSelectionState(logLevel: level, isSelected: true)
@@ -69,9 +67,15 @@ public class LogViewerViewModel: ObservableObject {
         let currentSelectedLevels = selectedLevels
         let currentLogEntries = logEntries
         
+        let selectedCategories = Set(categoryViewModels.filter { $0.isSelected }.map { $0.category.category })
+        
         filteringTask = Task {
             let filtered = await Task.detached {
                 return currentAllEntries.filter { entry in
+                    if !selectedCategories.contains(entry.category) {
+                        return false
+                    }
+                    
                     if !currentSelectedLevels.contains(entry.level) {
                         return false
                     }
@@ -106,11 +110,6 @@ public class LogViewerViewModel: ObservableObject {
             }
         }
         return true
-    }
-    
-    func togglePause() {
-        logger.info("User toggled pause state from \(self.isPaused) to \(!self.isPaused)")
-        logService.togglePause()
     }
     
     func clearLogs() {

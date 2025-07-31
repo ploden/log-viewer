@@ -29,7 +29,7 @@ public class LogService: ServiceProtocol {
     private var pollTimer: Timer?
     private var lastPollDate: Date?
     private var pollLogsTask: Task<Void, Never>?
-    private let updateInterval: TimeInterval = 1.0
+    private let updateInterval: TimeInterval = 0.5
     private let logger = Logger(subsystem: "com.logviewer.service", category: "LogService")
     
     public var continuations: [ServiceContinuation.Continuation] = []
@@ -67,8 +67,7 @@ public class LogService: ServiceProtocol {
     
     private func pollLogs() {
         guard !isPaused,
-              let logStore = logStore,
-              let lastDate = lastPollDate else {
+              let logStore = logStore else {
             return
         }
 
@@ -78,13 +77,15 @@ public class LogService: ServiceProtocol {
 
         pollLogsTask = Task {
             do {
-                let entries = try logStore.getEntries(matching: nil)
+                // Use the timestamp of the most recent log entry, or last 30 seconds if no entries exist
+                let sinceDate = logEntries.last?.timestamp ?? Date().addingTimeInterval(-30.0)
+                
+                let predicate = NSPredicate(format: "date >= %@", sinceDate as NSDate)
+                let entries = try logStore.getEntries(matching: predicate)
                 let entriesArray = Array(entries)
-                lastPollDate = Date()
 
                 let newEntries = entriesArray.compactMap { entry -> LogEntry? in
-                    guard let logEntry = entry as? OSLogEntryLog,
-                          logEntry.date >= lastDate else {
+                    guard let logEntry = entry as? OSLogEntryLog else {
                         return nil
                     }
 

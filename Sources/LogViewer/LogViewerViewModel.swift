@@ -12,7 +12,6 @@ public class LogLevelWithSelectionState: ObservableObject, Identifiable {
     @Published var isSelected: Bool
 }
 
-@MainActor
 public class LogViewerViewModel: ObservableObject {
     @Published var globalLogLevelsWithSelectionStates: [LogLevelWithSelectionState]
     private var allLogEntries: [LogEntry] = []
@@ -66,13 +65,23 @@ public class LogViewerViewModel: ObservableObject {
         let selectedLevels = globalLogLevelsWithSelectionStates.filter { $0.isSelected == true }.compactMap { $0.logLevel }
         let currentSelectedLevels = selectedLevels
         let currentLogEntries = logEntries
-        
-        let selectedCategories = Set(categoryViewModels.filter { $0.isSelected }.map { $0.category.category })
-        
+                
         filteringTask = Task {
             let filtered = await Task.detached {
                 return currentAllEntries.filter { entry in
-                    if !selectedCategories.contains(entry.category) {
+                    guard let categoryForEntry = self.categoryViewModels.first(where: { $0.category.category == entry.category }) else {
+                        return false
+                    }
+                    
+                    guard categoryForEntry.isSelected else {
+                        return false
+                    }
+                    
+                    guard let categoryLevelForEntry = categoryForEntry.logLevelsWithSelectionStates.first(where: { $0.logLevel == entry.level }) else {
+                        return false
+                    }
+                    
+                    guard categoryLevelForEntry.isSelected == true else {
                         return false
                     }
                     

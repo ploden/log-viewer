@@ -9,7 +9,6 @@ import Foundation
 import OSLog
 import SwiftUI
 
-@MainActor
 public class LogCategoryViewModel: ObservableObject, Identifiable {
     private(set) var category: LogCategory
     @Published var logLevelsWithSelectionStates: [LogLevelWithSelectionState]

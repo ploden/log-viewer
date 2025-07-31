@@ -62,58 +62,37 @@ struct SidebarView: View {
             }
             
             Section("Categories") {
-                
+                ForEach(viewModel.categoryViewModels, id: \.id) { category in
+                    CategoryRow(categoryViewModel: category)
+                }
             }
         }
         .listStyle(.sidebar)
     }
 }
 
-/*
 struct CategoryRow: View {
     @ObservedObject var categoryViewModel: LogCategoryViewModel
-    let logger: Logger
+    let logger: Logger = Logger(subsystem: "com.logviewer.app", category: "UI")
+    
+    @State private var levelStates: [OSLogEntryLog.Level: LogLevelWithSelectionState] = [:]
     
     var body: some View {
         DisclosureGroup(
-            isExpanded: Binding(
-                get: { categoryViewModel.isExpanded },
-                set: { isExpanded in
-                    categoryViewModel.isExpanded = isExpanded
-                    logger.debug("User \(isExpanded ? "expanded" : "collapsed") category '\(categoryViewModel.category.category)'")
-                }
-            )
+            isExpanded: $categoryViewModel.isExpanded
         ) {
             VStack(alignment: .leading, spacing: 4) {
-                ForEach([OSLogEntryLog.Level.debug, .info, .notice, .error, .fault], id: \.self) { level in
-                    Toggle(level.description, isOn: Binding(
-                        get: { categoryViewModel.categoryLogLevels[categoryViewModel.category.category]?.contains(level) ?? false },
-                        set: { isSelected in
-                            var levels = categoryViewModel.categoryLogLevels[categoryViewModel.category.category] ?? []
-                            if isSelected {
-                                levels.insert(level)
-                            } else {
-                                levels.remove(level)
-                            }
-                            categoryViewModel.categoryLogLevels[categoryViewModel.category.category] = levels
-                        }
-                    ))
-                    .toggleStyle(.checkbox)
+                ForEach(categoryViewModel.logLevelsWithSelectionStates, id: \.id) { levelWithState in
+                    LogLevelToggle(level: levelWithState)
                 }
             }
             .padding(.leading)
         } label: {
-            Toggle(categoryViewModel.category.category, isOn: Binding(
-                get: { categoryViewModel.isSelected },
-                set: { isSelected in
-                    categoryViewModel.isSelected = isSelected
-                }
-            ))
+            Toggle(categoryViewModel.category.category, isOn: $categoryViewModel.isSelected)
             .toggleStyle(.checkbox)
         }
     }
 }
- */
 
 extension OSLogEntryLog.Level {
     var description: String {

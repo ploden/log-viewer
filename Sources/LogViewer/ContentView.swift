@@ -9,11 +9,11 @@ import SwiftUI
 import OSLog
 
 public struct ContentView: View {
-    @StateObject private var viewModel: LogViewModel
+    @StateObject private var viewModel: LogViewerViewModel
     @State private var showSidebar = true
     private let logger = Logger(subsystem: "com.logviewer.app", category: "UI")
     
-    public init(viewModel: LogViewModel) {
+    public init(viewModel: LogViewerViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 
@@ -23,11 +23,19 @@ public struct ContentView: View {
                 SidebarView(viewModel: self.viewModel)
             }
         } detail: {
-            LogView(viewModel: viewModel, showSidebar: $showSidebar)
+            LogViewerView(viewModel: viewModel, showSidebar: $showSidebar)
         }
         .onChange(of: showSidebar) { oldValue, newValue in
             logger.info("Sidebar visibility changed from \(oldValue) to \(newValue)")
         }
+    }
+}
+
+struct LogLevelToggle: View {
+    @ObservedObject var level: LogLevelWithSelectionState
+    
+    var body: some View {
+        Toggle(level.logLevel.description, isOn: $level.isSelected)
     }
 }
 
@@ -38,77 +46,74 @@ struct CategoryLogLevels: Identifiable {
 }
 
 struct SidebarView: View {
-    private var viewModel: LogViewModel
-    @State private var expandedCategories: Set<String> = []
+    private var viewModel: LogViewerViewModel
     private let logger = Logger(subsystem: "com.logviewer.app", category: "UI")
 
-    public init(viewModel: LogViewModel) {
+    public init(viewModel: LogViewerViewModel) {
         self.viewModel = viewModel
     }
 
     var body: some View {
         List {
             Section("Global Log Levels") {
-                ForEach([OSLogEntryLog.Level.debug, .info, .notice, .error, .fault], id: \.self) { level in
-                    Toggle(level.description, isOn: Binding(
-                        get: { viewModel.selectedLevels.contains(level) },
-                        set: { isSelected in
-                            viewModel.setGlobalLogLevel(level, isSelected: isSelected)
-                        }
-                    ))
+                ForEach(viewModel.globalLogLevelsWithSelectionStates, id: \.id) { levelWithState in
+                    LogLevelToggle(level: levelWithState)
                 }
             }
             
             Section("Categories") {
-                ForEach(Array(viewModel.allAvailableCategories.sorted()), id: \.self) { category in
-                    DisclosureGroup(
-                        isExpanded: Binding(
-                            get: { expandedCategories.contains(category) },
-                            set: { isExpanded in
-                                if isExpanded {
-                                    expandedCategories.insert(category)
-                                    logger.debug("User expanded category '\(category)'")
-                                } else {
-                                    expandedCategories.remove(category)
-                                    logger.debug("User collapsed category '\(category)'")
-                                }
-                            }
-                        )
-                    ) {
-                        VStack(alignment: .leading, spacing: 4) {
-                            ForEach([OSLogEntryLog.Level.debug, .info, .notice, .error, .fault], id: \.self) { level in
-                                Toggle(level.description, isOn: Binding(
-                                    get: { viewModel.getCategoryLogLevels(category).contains(level) },
-                                    set: { isSelected in
-                                        viewModel.setCategoryLogLevel(category, level: level, isSelected: isSelected)
-                                    }
-                                ))
-                                .toggleStyle(.checkbox)
-                            }
-                        }
-                        .padding(.leading)
-                    } label: {
-                        Toggle(category, isOn: Binding(
-                            get: { viewModel.selectedCategories.contains(category) },
-                            set: { isSelected in
-                                var categories = viewModel.selectedCategories
-                                if isSelected {
-                                    categories.insert(category)
-                                    logger.info("User enabled category '\(category)'")
-                                } else {
-                                    categories.remove(category)
-                                    logger.info("User disabled category '\(category)'")
-                                }
-                                viewModel.setSelectedCategories(categories)
-                            }
-                        ))
-                    }
-                }
+                
             }
         }
         .listStyle(.sidebar)
     }
 }
+
+/*
+struct CategoryRow: View {
+    @ObservedObject var categoryViewModel: LogCategoryViewModel
+    let logger: Logger
+    
+    var body: some View {
+        DisclosureGroup(
+            isExpanded: Binding(
+                get: { categoryViewModel.isExpanded },
+                set: { isExpanded in
+                    categoryViewModel.isExpanded = isExpanded
+                    logger.debug("User \(isExpanded ? "expanded" : "collapsed") category '\(categoryViewModel.category.category)'")
+                }
+            )
+        ) {
+            VStack(alignment: .leading, spacing: 4) {
+                ForEach([OSLogEntryLog.Level.debug, .info, .notice, .error, .fault], id: \.self) { level in
+                    Toggle(level.description, isOn: Binding(
+                        get: { categoryViewModel.categoryLogLevels[categoryViewModel.category.category]?.contains(level) ?? false },
+                        set: { isSelected in
+                            var levels = categoryViewModel.categoryLogLevels[categoryViewModel.category.category] ?? []
+                            if isSelected {
+                                levels.insert(level)
+                            } else {
+                                levels.remove(level)
+                            }
+                            categoryViewModel.categoryLogLevels[categoryViewModel.category.category] = levels
+                        }
+                    ))
+                    .toggleStyle(.checkbox)
+                }
+            }
+            .padding(.leading)
+        } label: {
+            Toggle(categoryViewModel.category.category, isOn: Binding(
+                get: { categoryViewModel.isSelected },
+                set: { isSelected in
+                    categoryViewModel.isSelected = isSelected
+                }
+            ))
+            .toggleStyle(.checkbox)
+        }
+    }
+}
+ */
 
 extension OSLogEntryLog.Level {
     var description: String {

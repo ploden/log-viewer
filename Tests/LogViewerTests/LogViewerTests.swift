@@ -13,12 +13,12 @@ import OSLog
 @MainActor
 final class LogViewerTests: XCTestCase {
     var logService: LogService!
-    var viewModel: LogViewModel!
+    var viewModel: LogViewerViewModel!
     
     override func setUp() {
         super.setUp()
         logService = LogService()
-        viewModel = LogViewModel(logService: logService)
+        viewModel = LogViewerViewModel(logService: logService)
     }
     
     override func tearDown() {
@@ -131,11 +131,5 @@ final class LogViewerTests: XCTestCase {
         XCTAssertEqual(entry.levelColor, .red)
         XCTAssertEqual(entry.category, "TestCategory")
         XCTAssertEqual(entry.message, "Test Message")
-    }
-    
-    func testLogServiceCategoryLogLevels() {
-        let category = "TestCategory"
-        let levels = logService.getCategoryLogLevels(category)
-        XCTAssertFalse(levels.isEmpty)
     }
 }

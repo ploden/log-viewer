@@ -1,8 +1,8 @@
 import SwiftUI
 import OSLog
 
-struct LogView: View {
-    @ObservedObject private var viewModel: LogViewModel
+struct LogViewerView: View {
+    @ObservedObject private var viewModel: LogViewerViewModel
     @Binding private var showSidebar: Bool
     private let logger = Logger(subsystem: "com.logviewer.app", category: "UI")
     
@@ -14,7 +14,7 @@ struct LogView: View {
         .fault: "FAULT"
     ]
     
-    init(viewModel: LogViewModel, showSidebar: Binding<Bool>) {
+    init(viewModel: LogViewerViewModel, showSidebar: Binding<Bool>) {
         self.viewModel = viewModel
         self._showSidebar = showSidebar
     }
@@ -133,5 +133,5 @@ struct LogEntryRow: View {
 }
 
 #Preview {
-    LogView(viewModel: LogViewModel(logService: LogService()), showSidebar: .constant(true))
-} 
+    LogViewerView(viewModel: LogViewerViewModel(logService: LogService(), logCategories: [LogCategory(category: "Cat 1"), LogCategory(category: "Cat 2")]), showSidebar: .constant(true))
+}

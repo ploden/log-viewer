@@ -29,9 +29,22 @@
 		8D330AF02DE0297E0075A06C /* LogViewerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogViewerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8DB6E4772E53D843000280DC /* Exceptions for "LogViewer" folder in "LogViewer" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 8D330AD42DE0297D0075A06C /* LogViewer */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8D330AD72DE0297D0075A06C /* LogViewer */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8DB6E4772E53D843000280DC /* Exceptions for "LogViewer" folder in "LogViewer" target */,
+			);
 			path = LogViewer;
 			sourceTree = "<group>";
 		};

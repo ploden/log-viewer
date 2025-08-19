@@ -11,9 +11,37 @@ import OSLog
 struct ContentView: View {
     @EnvironmentObject private var viewModel: LogViewModel
     @State private var showSidebar = true
+    @State private var showSidebarModal = false
     private let logger = Logger(subsystem: "com.logviewer.app", category: "UI")
     
     var body: some View {
+        #if os(iOS)
+        NavigationView {
+            LogView(viewModel: viewModel, showSidebar: $showSidebar)
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button("Filters") {
+                            showSidebarModal = true
+                        }
+                    }
+                }
+                .sheet(isPresented: $showSidebarModal) {
+                    NavigationView {
+                        SidebarView()
+                            .navigationTitle("Filters")
+                            .navigationBarTitleDisplayMode(.inline)
+                            .toolbar {
+                                ToolbarItem(placement: .navigationBarTrailing) {
+                                    Button("Done") {
+                                        showSidebarModal = false
+                                    }
+                                }
+                            }
+                    }
+                }
+        }
+        #else
         NavigationSplitView {
             if showSidebar {
                 SidebarView()
@@ -24,6 +52,7 @@ struct ContentView: View {
         .onChange(of: showSidebar) { oldValue, newValue in
             logger.info("Sidebar visibility changed from \(oldValue) to \(newValue)")
         }
+        #endif
     }
 }
 
@@ -48,6 +77,9 @@ struct SidebarView: View {
                             viewModel.setGlobalLogLevel(level, isSelected: isSelected)
                         }
                     ))
+                    #if os(iOS)
+                    .toggleStyle(.switch)
+                    #endif
                 }
             }
             
@@ -75,7 +107,11 @@ struct SidebarView: View {
                                         viewModel.setCategoryLogLevel(category, level: level, isSelected: isSelected)
                                     }
                                 ))
+                                #if os(iOS)
+                                .toggleStyle(.switch)
+                                #else
                                 .toggleStyle(.checkbox)
+                                #endif
                             }
                         }
                         .padding(.leading)
@@ -94,11 +130,18 @@ struct SidebarView: View {
                                 viewModel.setSelectedCategories(categories)
                             }
                         ))
+                        #if os(iOS)
+                        .toggleStyle(.switch)
+                        #endif
                     }
                 }
             }
         }
+        #if os(iOS)
+        .listStyle(.insetGrouped)
+        #else
         .listStyle(.sidebar)
+        #endif
     }
 }
 
